@@ -1,0 +1,38 @@
+Ketika kita menggunakan sebuah "form" maka laravel akan mengamankan halaman web. Kemananna yaitu CSRF (cross sie request
+forgery)
+
+csrf : sebuah metode serangan kepada web kita dengan memalsukan request dari website lain (membajak).
+
+contohnya website orang lain
+<form action="http://mengarah-ke-website-kita" method="post">
+    <input type="text" value="skrip ini jahat">
+</form>
+
+<script>
+    document.forms[0].submit
+</script>
+
+Jika ada request di atas maka form yang ada di website kitalah yang akan mengerjakan request tersebut
+Untuk mengatasi hal tersebut laravel memberikan sebuah "csrf_token" untuk di gunakan di dalam request form.
+- Untuk menggunakan csrf_token
+<form action="/post" method="post">
+    @csrf
+
+    <input type="hidden" name="_token" value="{{ csrf_token() }}" />
+</form>
+
+
+
+validation : cek dokumentasi di laravel
+cara menggunakan validasi
+1. butuh route dengan method post yag dikirim lewat from
+2. butuh controller dengan method "store"
+3. pada method store panggil request()->validate([]);
+
+Jika sudah lolos validasi maka simpan data
+DB::create($validateData)
+
+Mengirimkan flashing data
+$request->session()->flash('name_sesion', "ini pesah dari flash data!");
+
+Redirect = redirect('/halaman')

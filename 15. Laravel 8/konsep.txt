@@ -1,0 +1,27 @@
+- Laravel adalah sebuah kerangka aplikasi web dengan sintaks yang elegan dan ekpresif (laravel.com)
+- Dibuat oleh Tylor Otwell, Juni 2011
+
+Web Application Framework:
+- sebuah kerangkan yang didesain untuk mendukung pembangunan aplikasi web
+- menyediakan standar / cara untuk membangun aplikasi web
+- bertujuan untuk mengotomasi hal-hal umum yang biasanya dilakukan saat membangun aplikasi web
+- contohnya: database library, templating engie, session managemen, authentication, security, dll
+
+
+Fitur utama pada laravel
+- MVC (Model View Controler)
+- Tamplate Engine
+- Artisan Console (dapat mengkonfigurasi pada Framework)
+- Eloquent ORM (Object Relational Maping)
+- Authentication & Authorization
+- Testing
+- Packaging System
+- Multiple File System
+- Task Scheduling
+- Websocket Prigramming
+
+
+PreRequisite
+- PHP dasar
+- OOP PHP
+- MVC

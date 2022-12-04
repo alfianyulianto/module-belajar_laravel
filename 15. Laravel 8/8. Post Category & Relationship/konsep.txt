@@ -1,0 +1,39 @@
+Post category
+- untuk mengambil postingan dengan category_id tertentu
+Post::where('category_id', 1)->get()
+
+
+Eloquent Relathionship
+- Tabel di dalam database kita baisanya berleasi satu sama lain
+- Contohnya kita bikin sistem blog sebuah blog post itu mungkinsaja bisa memiliki banyak komentar. Komentar ini selain berelasi dengan postnya pasti juga berelasi dengan siapa yang menulisakannya
+- Dengan Eloquent itu mengelola dan bekerja dengan Relathionship ini itu menjadi lebih gampang
+
+Jika kita hubungkan dengan eloqount
+- Tips Kuncinya ada di tabel yang menitipkan id ke tabel lain (tabel yang memiliki foreignKey)
+"Misal tabel Alfa menitipkn tbel id nya ke tabel Beta sehingga tabeL (tabel Beta memiliki foreignKey)"
+- hasMany -> artinya satu tabel Alfa punya banyak tabel Beta
+- belongsTo -> artinya satu tabel Alfa punya satu tabel Beta
+
+"Misalnya tabel Alfa terdapat foreignKey dari tabel Beta"
+- hasOne -> artinya satu tabel Alfa punya satu tabel Beta
+- belongToMany -> artinya satu tabel Alfa punya banyak tabel Beta
+
+Cara membuat Relathionship
+- buat method dengan nama model yang ingin kita hubungkan.
+"Misal kita ingin menghbungkan model Alfa ke dalam model Beta
+"Kemudian kita pingin satu model Alfa meiliki satu model Beta
+public function beta(){
+    return $this->belongsTo(Beta::class);
+}
+
+Untuk cara mengecek apakah model Alfa sudah terhubung ke model baisanya
+- Masuk ke tingker
+"Misalkan kita ambil postingan salah satu dari model Alfa
+- $alfa->Alfa::first()
+
+- $alfa->beta
+    mengambil semua data dari tabel category
+
+- $alfa->beta->name_field
+    mengabmil field_name beta yang terhubung ke alfa
+

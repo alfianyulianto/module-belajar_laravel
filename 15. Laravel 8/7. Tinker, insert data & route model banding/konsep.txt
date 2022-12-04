@@ -1,0 +1,22 @@
+MASSASIGNMENTEXCEPTION :
+- Didalam laravel sudah menangani yang namanya MassAsignmentEcpection
+- create, update
+
+
+Post::create([
+    "title"=>"Judul Lima",
+    "excerpt"=>"Lorem ipsum dolor, sit amet consectetur adipisicing elit. Doloribus vero voluptatibus veritatis distinctio, quam placeat. Excepturi incidunt neque blanditiis",
+    "body"=>"<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus delectus explicabo hic sed dolorum quo repellat itaque dicta aperiam necessitatibus voluptatum voluptates molestias non consequatur facilis, quasi odio totam earum a culpa temporibus modi? Ex laudantium corporis ad quisquam quae ipsam officiis magnam facere. Alias ad officia distinctio voluptatem, porro cupiditate ut dignissimos perferendis tenetur.</p> <p>Minima, rerum labore tenetur ab aspernatur quos rem ipsa quia corporis excepturi dolor veritatis quas cupiditate provident harum ut explicabo nobis repudiandae recusandae animi est iste voluptate. Adipisci aspernatur minus officia voluptatem. Voluptatibus rerum dignissimos expedita accusantium, nihil neque architecto debitis. Aliquam possimus earum quia neque est aperiam facilis. Eius numquam impedit, sapiente quibusdam cumque explicabo porro aliquid tempora maiores. Id ut tenetur pariatur ad reprehenderit sint distinctio voluptas! Tempora, deleniti a, animi debitis alias sed, recusandae quae nisi temporibus repellendus dolore? Velit, ut itaque?</p>"
+])
+
+
+- find:mencari berdasarkan id
+Post::find(3)->update(['title'=>'Judul Ketiga Berubah'])
+
+- where:mencari berdasarkan field yang lain
+Post::where('naam_field', 'isiDariField')->update(['nama_field'=>'isiField yang dirubah'])
+
+
+
+
+

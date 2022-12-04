@@ -1,0 +1,40 @@
+Laravel menyediakan "stater kits" sebuah plugin atau aplikasi khusus yang menangani authentication. Ini menggunakna "Laravel Breeze", di dalamnya kita bisa gunakan untuk login, register, verifikasi lewat email, remember me, forgot password. Untuk UI menggunakan "Tailwind CSS".
+
+
+Manually authentication Users
+Cara membuat
+public function authenticate(Request $request)
+    {
+        $credentials = $request->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required'],
+        ]);
+ 
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
+ ]]
+            // itended() : sebuah method yang disediakan oleh laravel untuk melakukan redirect usernya kesebuah URL sebelum melewati authentication "middleware
+            return redirect()->intended('dashboard');
+        }
+ 
+        return back()->withErrors([
+            'email' => 'The provided credentials do not match our records.',
+        ])->onlyInput(['email']);
+    }
+
+
+Middleware authentication : middleware menyediakan sebuah mekanisme yang memudahkan kita untuk melakukan inspeksi dan filtering HTTP request. 
+Contohnya laravel sudah menyediakan middleware di dalamnya untuk melakukan authentication apakah seorang user di dalam aplikasi kita sudah terauthentikasi atau belum, jika belum maka laravel akan melakukan ridircet si user kedalam login. Tapi jika sudah terauthentikasi maka si middleware akan memperbolehkan kita untuk lanjut ke dalam aplikasi
+
+
+Cara Logout
+public function logout(Request $request)
+{
+    Auth::logout();
+ 
+    $request->session()->invalidate();
+ 
+    $request->session()->regenerateToken();
+ 
+    return redirect('/');
+}

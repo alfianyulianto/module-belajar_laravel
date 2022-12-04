@@ -1,0 +1,21 @@
+- Selain dari layanan authentication laravel menyediakan cara sederhana untuk melakukan autjorisasi terhadap halaman-halaman yang ada. Contohnya meskipun seorang user sudah terautektikasi bisa aja tidak punya akses untuk upadate dan delete dari model tertentu dari model tertentu di dalam database.
+- Didalamn laravel menggunakan 2 cara utama dalam melakukan authorisasi yaitu "gates" dan "polices"
+
+- GATES : sebuah cara yang bagus untuk mempelajari dasar-dasar dari authorisasi laravel. Meskipun nantinya kita membuat aplikasinya udah kompleks kita harus memikirkan juga menggunakan "policies"
+- Untuk membuat sebuga Gates kita  buat closure untuk menentukan apakah seirang user memiliki akses untuk melakukan aksi tertentu umumnya Gates ini di definisikan di dalam method "boot" di App\Provider\AuthServiceProvider dan bikinya menggunakan --facade-- yang namanya Gate.
+- Dengan Gates otomatis tau user yang lagi login itu siapa sehingga kita dapat memberikan user tersebut bisa ngapain aja dan bisa kita juga menambahkan argument tambahan sesuai dengan model yang relevan
+
+Cara membuat
+use Illmuminate\Support\Facades\Gate
+
+Gate::define('nama', function(User $user, Post $post){
+	return $user->id == $post->user_id;
+})
+
+- Kelebihan gate bisa digunakan dimanapun seperti di sidebar
+@can('admin') @endcan
+
+
+UNTUK MEMBUAT AUTHENTIKASI KEPADA ADMIN KITA GUNAKAN "MIDDLEWARE"
+- Cara membuat middleware
+	php artisan make:middleware EnsureTokenIsValid

@@ -1,0 +1,8 @@
+- Templating Engine : merupakan sebah fitur atau tools utuk membantu kita dalam membuat sebuah web khususnya framework
+
+Sintaks blade :
+- {{  }} : untuk mengganti sintaks php echo. Dengan menggunakan blade otomatis di belakang layar akan ditambahkan sebuah "fungsi htmlspecialchars" untuk menghindari serangan XSS (Xros Side Scripting)
+
+- Extending a layout 
+    cara menggunakan -> @extends('layout.app') : untuk digunakan pada child view (halaman chidl, seperti home, about, blog)
+                     -> @yield('nama_bebas) : untuk mendeskripsikan

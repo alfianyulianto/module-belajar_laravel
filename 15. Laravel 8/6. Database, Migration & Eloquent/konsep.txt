@@ -1,0 +1,72 @@
+Environmet 
+- Didalam laravel terdapat file .Environmet
+- File .env digunakan untuk melakukan setting / konfigurasi di lingkungan development kita
+
+.env -> variable sebenarnya yang dipakai dalam aplikasi
+.evn-example -> tamplate
+
+
+.env :
+# app_name nama palikasi kita
+# app_env untuk mengasih tau lingkunagn pengembangan kita berada di tahap apa (local, development, production)
+# app_url untuk ngasih tau kita url aplikasi 
+
+
+- Migration : ini seperti version control(seperti git)/untuk melacak perubahan dalam database kita lewat kodingan laravel yang memungkinkan kita atau tim kita untuk mendefinisikan atau mendistribusikan schema atau struktur database kita
+- Dengan menggunakan migration kita tidak perlu melakukan import dan export dari database
+
+    Untuk membuat tabel baru di laravel dengan cara
+    php artisan make:migration create_namatabel_table
+
+    Untuk membuat file migrasi menjadi tabel. Dengan perintah ini artinya kita menambah sebuah tabel ke dalam database kita tanpa mengganggu tableyang lain
+    php artisan migrate
+
+    Untuk menghilangkan schema yang dibuat
+    php artisan migrate:rollback
+
+    Untuk melakukan rollback dan migrate sekaligus
+    php artisan migrate:fresh
+
+
+Cara isi data lewat laravel (sehingga tidak lewat mysql dan tidak perlu membuat form di webnya)
+- Eloquent ORM : sebuah object-relational mapper yang mempermudah kita dalam berinterkasi dengan database yang kita buat
+- Dengan menggunakan eloquent ini setiap tabel dalam database kita itu terhubung kedalam sebuah "Model" untuk berinteraksi dengan tabel
+- Eloquent Model ini memungkinkan kita untuk melakukan CRUD kedalam tabel ewat coding (ini terjadi karena active record pattern)
+- Active Record Patter adalah sebuah pendekatan untuk mengakses data dalam database. Jadi tabel didalam database kita dibungkus kedalam sebuah class
+- Jadi jika sudah ada class yang merepresentasikan sebuah model maka setiap "data" itu terhubung kedalam intance atau object kedalam tabel
+- Setelah kita membuat instance atau object di dalam classnya maka ada "data" yang ditambahkan pada saat kita melakukan save
+
+
+- TINKER adalah sebuah aplikasi didalam laravel yang digunakan untuk berinterasi dengan aplikasi laravels
+Cara menggunakan aplikasi TINKER   
+    php artisan tinker
+
+    Untuk menambah data user di ke dalam database
+    - $user = new App\Models\User;
+        Jika kita sudah menyimpan model sesuai aturan maka tinggal gunakan
+            $user = new User;
+    - $user->name = "Alfian Yulianto";
+    - $user->email = "alfian36@gmail.com";
+    - $user->password = bcrypt('12345');
+        bcrypt untuk mengenkripsi password
+    - $user->save(); //hasil true
+
+    Untuk melihat isi dari tabel database
+    - $user->all();
+
+    Untuk mencari user pertama
+    - $user->first();
+
+    Untuk mencari user dengan id 2
+    - $user->find(2);
+        dengan find() ini kita tidak bisa mencari berdasarkan field
+
+    Method untuk langsung menangani apa yang kita cari tidak apa
+    - $user->findOrFail(2000);
+        Jika ada tampilkan jika tidak ada jangan tampilkan null langsung tampilin errornya apa
+    
+    Untuk mencari berdasarkan field
+    - $user->pluck('nama_field');
+
+
+

@@ -1,0 +1,25 @@
+- Seeding : untuk mengisi secara otomatis tabel kita ketika dibuat
+- Didalam laravel memiliki kemampuan untuk melakukan seed (menyemai) di dalam databse kita dengan menggunakan data testing. Caranya dengan menggunakan "class seed" dan nanti disimpan kedalam folder database/sidders. Secara default kita sudah dikasih sebuah seeder dengan namanya "DatabaseSeeder" yang nanti bisa kita gunakan untuk menjalankan proses seeding nya dari class/model yang lain
+
+Untuk membuatnya gunakan perintah
+    php artisan make:seeder UserSeeder
+
+Jika seeder sudah dibikin dan sudah siap gunakan perintah untuk menanam seed
+    php artisan db:seed
+
+    atau
+    
+    php artisan db:seed --class=UserSeeder
+
+    atau bisa 
+
+    php artisan migrate:fresh --seed
+        bersihkan dan masukan tabelnya dulu baru jalankan seedernya
+
+
+- factory : pada saat pengujian mungkin saja kita butuh data baru ke dalam databse kita sebelum menjalankan tes. Dari pada kita secara manual kita mengetikan datanya laravel memungkinkan tika mendefinisian sebuah factory ke model kita
+
+Untuk melihat factory -> database/factories/userFactory.php
+
+Untuk memuat factory
+    php artisan make:factory PostFactory

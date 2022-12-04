@@ -1,0 +1,16 @@
+N+1 : ketika aplikasi kita mengambil data daru database dimana didalamnya kita melakukan looping terhadap data kita. Yang terjadi adalah kita melakukan looping berulang-ulang sehingga aplikasi kita yang harunya melakukan query ke semua data kita (N) dan query ke data yang ada di dalamnya(+1) malah menambhakan N query.
+
+- Contonya di all post kita menampilkan data postingan dari model post dan di dalamnya kita memamnggil model category dan model user. Ketika melakukan looping ke model post kita akan melakukan query ke tabel user dan tabel category hanya untuk pemanggilan satu data.
+
+Eager Loadding : Pada saat kita mengakses sebuah relationship di dalam sebuah eloquent makamodelnya akan melakukan sebuah teknik bernama "lazy load". Artinya datanya tidak akan di load sampai kita mengakses propertinya. Tapi kita bisa meminta Eloquntnya melakuakan "eager load" ketika kita melakuakn query pada parentnya
+
+Untuk menggunakan eager load
+	Post::with(['category', 'author'])
+
+	atau bisa ke model Post
+	protected $with = ['category', 'author'];
+
+
+Lazy Eager Loading : Kadang2 kta butuh melakkan eager loading pada relathionsip kita setelah si parentnya sudah didapatkan
+Jika kita menggunakan route model banding
+	$author->load(['name_model','name_model'])

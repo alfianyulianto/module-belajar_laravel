@@ -1,0 +1,62 @@
+FUN FACT
+- modifier "Private" hanya bisa dipanggil di class yang bersangkutan saja
+- properti "static" : sebuah properti yang dapat dipanggil dari luar class dengan melalui class turunan dan tanpa class turunan
+- properti non static : dia dipanggil dengan cara $this->nama_property ($this = new nama_class; $this->namaproperty)
+- self : untuk memanggil  static property dari class yang sama
+- parent : untuk memanggil  static property dari class parent
+- nama_class:: $nama_properti digunakan untuk memanggul statci properti dari luar class
+
+
+
+- Model : didalam laravel terdapat eloquent atau oject-relational maper (ORM) yang membuat lebih mudah berinteraksi dengan database. 
+- Dengan menggunakan eloquent ini setiap tabel di database terdapat sebuah "Model" agar kita dapat berinterkasi
+- Model ini berbentu sebuah class, yang class ini dapat dipetakan ke dalam tabel. Mulai dari insert, update, delete
+
+Untuk membuat model ketikan perintah :
+    php artisan meka:model name_model
+
+Untuk mengenerate tabel ke dalam databasenya dan menuliskan secemadatabase :
+    php artisan make:model name_model --migration
+
+
+Membuat method static
+    panggil_model::nama_method()
+
+Untuk menghubungkan ke model
+use nama_folder/nama_model atau gunakan ekstensi php namespace resolver
+
+
+- Collection : di dalam laravel menyediakan sebuah Collection yang merupakan pembungkus dari arrays of data.
+- Dengan menggunakan Collection ini memungkinkan kita untuk menjalankan banyak function
+
+Cara penggunaan
+    collect(['taylor', 'abigail', null])
+
+Fungsi yang bisa digunakan antara lain:
+1. first : untuk menjacari element pertama
+2. firstWhare : untuk mencari element pertama dengan sebuah kondisi
+
+
+- Countroller : dari pada kita mendefinisikan semua logic program kita sebagai closure(anonimus function) di dalam route file kita sehingga kita dapat menempatkannya di dalam clontroller.
+- Controller dapat menggabungkan atau mengelompokan request(post, get) yang serupa untuk menangani logicnya kedalam sebuah class. Contohnya jika kita menangani semua halaman postingan dan single psotingan
+- Countroller digunakan untuk menampilkan view apa, mau ambil data dari model mana, datanya apa. Itu merupakan tugas Countroller
+
+Cara membuat Controller
+
+    php artisan make:controller name_controller
+
+    buka folder app\Http\Controllers\name_controller
+
+    bikin class nama_controlerController extands Controller
+    {
+        // controller didalamnya memiliki sebuah method
+        public function show(parameter)
+        {
+            return view('user.profile', [
+                'user' => User::findOrFail($id);
+            ]);
+        }
+    }
+
+    routes enggak akan punya closure
+    Route::get('/user/{$id}, [name_controllerController::class, 'show']);

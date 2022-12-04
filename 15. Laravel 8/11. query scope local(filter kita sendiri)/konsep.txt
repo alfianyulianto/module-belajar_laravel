@@ -1,0 +1,42 @@
+Local sope : Dengan menggunakan local scope memungkinkan kita untuk mendefinisikan  query-query umum yang bisa digunakan kembali di aplikasi kita. Contohnya kalau kita butuh secara sering mengambil data user yang populer
+
+Cara menggunaka di dalam model
+cara 1
+
+Kata scope itu wajib karena sebagai penanda bahwa ini menrupakan query scope
+public function scopePopular($query) {
+    retrun $query->where('votes', '>', 100);
+}
+
+User::popular()->all()
+
+
+
+collection
+when : method yang dijalankan ketika first argument bernilai "true"
+
+$collection = collect([1, 2, 3]);
+$collection->when(true, function($collection){
+    return $collection->push(4);
+})
+
+
+null colescing operator (??)
+yaitu yang sudah ditambahkan di php 7 untuk menggantikan ternary dan menggantikan isset
+
+$username = $_GET['user'] ?? nobody
+$username = true ?? flase
+
+
+PAGINATION  
+DB::User->paginate(15)
+
+untuk menambah link di view panggil method link() {{ $nama_query->link() }}
+pagination di laravel defaultnya menggunakan tailwind
+
+DB::User->paginate(15)->withQueryString()
+withQueryString : untuk membuat quer yang seblumnya ada bisa ditambahkan di pagination
+
+
+
+

@@ -1,0 +1,25 @@
+- 1. app
+- > Console
+- > Exceptions
+- > Http
+    - > controlers > controlers.php
+    - > middleware
+    - > Kernel.php
+- > Models > user.php
+        file atau class untuk mengelola user (untuk register, login)
+
+- 6. public : untuk menyimpan aset statis seperti "css, js, images"
+
+- 7. resources
+- > css : digunakan untuk bekerja dengan sistem bundling
+- > js 
+- > views 
+
+- 8. routes : file untuk penjaluran (misal ada request get, post atau api)
+- > api.php
+- > channels.php
+- > console.php
+- > web.php : digunakan untuk register penjaluran untuk web pada aplikasi kita (misal kita ketikan ke url maka akan ditangan oleh routes yang mana)
+
+
+.env : digunakan untuk menentukan environment (misa terkoneksi ke database)
