@@ -1,0 +1,9 @@
+View Layout
+
+- $this->renderSection('name'); 
+- $this->extend('folder/filename');   
+- $this->section('name');
+- $this->endSection();
+
+Partial
+- $this->include('folder/filename');

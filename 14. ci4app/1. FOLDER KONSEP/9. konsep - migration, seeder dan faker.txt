@@ -1,0 +1,82 @@
+Database Migration
+- Migration sebuah cara yang nyaman untuk kita memodifikasi database kita secara terstruktur dan terorganisir
+- Kita bisa mengedit SQL manual tapi kita bertanggungjawab kepada developer lain sekema database kita lalu temen kita haurus menjalankan query yang sama atau bikin struktur database yang sama
+- Biasanya saat kita mengkopi aplikasi kita untuk orang lain kita juga harus mengkopi database kita dengan cara mengekspor di phpmyadmin
+- Dengan memanfaatkan migrasi ini kita bisa membuat database dengan coding yang di dalamnya memuat sekema dari tabel kita lalu dengan perintah command line kita bisa jalankan sehingga sekema tabel kita secara otomatis akan terbentu di database
+
+- Cara membuat Migration (method up untuk membuat sekema database sedangkan method down untu menghapus)
+<?php
+namespace App\Database\Migrations;
+use CodeIgniter\Database\Migration;
+class AddBlog extends Migration
+{
+    public function up()
+    {
+        $this->forge->addField([
+            'blog_id' => [
+                'type'           => 'INT',
+                'constraint'     => 5,
+                'unsigned'       => true,
+                'auto_increment' => true,
+            ],
+            'blog_title' => [
+                'type'       => 'VARCHAR',
+                'constraint' => '100',
+            ],
+            'blog_description' => [
+                'type' => 'TEXT',
+                'null' => true,
+            ],
+        ]);
+        $this->forge->addKey('blog_id', true);
+        $this->forge->createTable('blog');
+    }
+    public function down()
+    {
+        $this->forge->dropTable('blog');
+    }
+}
+
+- Cara menjalankan migrasi
+  ^ php spark migrate : untuk menjalankan semua file Migration, artinya jika kita punya file migrasi lebih dari satu maka semuanya akan dijalankan 
+    * ada beberapa opsi
+      1. -g : untuk memilih grup Database, jika tidak grup database default akan digunakan.
+      2. -n : untuk memilih namespace, jika tidak (App) namespace akan digunakan.
+      3. --all : untuk memigrasikan semua namespaces ke migrasi terbaru
+- Cara untuk membuat file migrasi
+  ^ php spark migrate:create[fillName]
+- Untu melihat status migrasi
+  ^ php spark migrate:status
+
+
+Database Seeding / Seeder
+- Seeder digunakan untuk menambah data di daam tabel database secara otomatis dengan data dami
+- Ini bisa digunakan saat tahap development dimana kita ingin mempopulasi data dengan data sampel
+- Seeder juga menyediakan data static ketika kamu tidak mau mengikutsertakan dalam migrasi seperti data negara, tabel geo-coding dan lain-lain
+
+- Cara membuat Seeder (method run untuk menjalankan atau mengisikan data ke dalam tabel)
+<?php
+namespace App\Database\Seeds;
+use CodeIgniter\Database\Seeder;
+class SimpleSeeder extends Seeder
+{
+    public function run()
+    {
+        $data = [
+            'username' => 'darth',
+            'email'    => 'darth@theempire.com',
+        ];
+        // Simple Queries
+        $this->db->query('INSERT INTO users (username, email) VALUES(:username:, :email:)', $data);
+        // Using Query Builder
+        $this->db->table('users')->insert($data);
+    }
+}
+- Cara untuk membuat file Seeder
+  ^ php artisa make:seeder nameFile --suffix
+- Cara menjalankan Seeder
+  ^ php spark db:seed nameFileSeeder
+
+
+Library Facker
+- Facker digunakan untuk mengenerate banyak data ke tabel 

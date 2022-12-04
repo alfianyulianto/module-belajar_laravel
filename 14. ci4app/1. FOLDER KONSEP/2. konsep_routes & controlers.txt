@@ -1,0 +1,31 @@
+URI Routing
+- Ketika kita mengakses website di dalam browser lalu mengetikan url maka pertama kali yang diakses ialah "routes".
+
+- Routes : menentukan controller mana yang akan dijalankan.
+
+- app/Config/Routes.php
+
+- class BaseController.php : digunakan untuk load sebelum class controller dijalankan (session, model, dll)
+
+- Sejak v4.2.0, perutean otomatis dinonaktifkan secara default. Untuk menggunakannya, Anda perlu mengubah opsi $routes->setAutoRoute(false) menjadi $routes->setAutoRoute(true) di app/Config/Routes.php
+
+- Metode Request
+  ^ get() : untuk membuat jalu ketika ada metode request get
+  ^ add() : untuk menambah routes baru
+  ^ post() : untuk menambah data pada form
+  ^ delete() : untuk mengahapus data
+
+- Closures (fungsi tanpa nama) : fungsi ini akan dijalankan ketika pengguna mengunjungi URI tersebut. Ini berguna untuk menjalankan tugas kecil dengan cepat, atau bahkan hanya menampilkan tampilan sederhana
+
+- Mengambi data dari Segment URL
+  ^ saat kita menuliskan http://localhost:8080/controller/method/data , maka data ini akan masuk sebagai parameter di method bersangkutan
+
+- Placeholder : tamplate untuk menyimpan nilai. Dalam sebuah rute, parameter pertama berisi URI yang akan dicocokkan, sedangkan parameter kedua berisi tujuan yang harus dirutekan. 
+(:any) : untuk semua karakter tertentu
+(:segment) : untuk semua karakter kecuali /
+(:num) : untuk angka
+(:alpha) : untuk alphabet a-z
+(:alphanum) : untuk angka dan huruf
+(:hash) : sama dengan num dan juga mengecek route mana ang menggunakan idHash
+
+- Namespace 
