@@ -1,2 +1,0 @@
-HTTP Method Spoofing
-- untuk memanipulasi method yang agar bisa menggunakan method delete dan put selain post dan get
